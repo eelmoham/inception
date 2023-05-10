@@ -6,6 +6,9 @@ COPY package.json .
 
 RUN npm install
 
+# Define the /src directory as a volume
+#VOLUME [ "/app/src" ]
+
 COPY . .
 
 EXPOSE 8080
