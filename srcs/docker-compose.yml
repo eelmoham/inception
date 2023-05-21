@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mariadb:
+    build:
+      context: ./requirements/MariaDB
+      dockerfile: Dockerfile
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - mynetwork
+
+  nginx:
+    build:
+      context: ./requirements/NGINX
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    networks:
+      - mynetwork
+  # wordpress:
+  #   build:
+  #     context: ./requirements/WordPress
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - wordpress_data:/var/www/html
+  #   networks:
+  #     - mynetwork
+networks:
+  mynetwork:
+
+volumes:
+  mariadb_data:
+  wordpress_data:
