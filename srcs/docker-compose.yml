@@ -22,6 +22,10 @@ services:
       - 3306:3306
     volumes:
       - mariadb:/var/lib/mysql
+    networks:
+      - my-network
+    env_file:
+      - .env
   nginx:
     build:
       context: ./requirements/NGINX
@@ -32,6 +36,10 @@ services:
       - wordpress
     volumes:
       - wordpress:/usr/share/nginx/html
+    networks:
+      - my-network
+    env_file:
+      - .env
 
   wordpress:
     build:
@@ -43,3 +51,10 @@ services:
       - mariadb
     volumes:
       - wordpress:/usr/share/nginx/html
+    networks:
+      - my-network
+    env_file:
+      - .env
+networks:
+  my-network:
+    driver: bridge
