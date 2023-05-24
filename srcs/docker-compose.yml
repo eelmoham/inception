@@ -1,4 +1,18 @@
 version: '3'
+
+volumes:
+  mariadb:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/eelmoham/data/mariadb
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/eelmoham/data/wordpress
 services:
   mariadb:
     build:
@@ -7,31 +21,25 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - mariadb_data:/var/lib/mysql
-    networks:
-      - mynetwork
-
+      - mariadb:/var/lib/mysql
   nginx:
     build:
       context: ./requirements/NGINX
       dockerfile: Dockerfile
     ports:
       - 443:443
-    networks:
-      - mynetwork
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress:/usr/share/nginx/html
+
   wordpress:
     build:
       context: ./requirements/WordPress
       dockerfile: Dockerfile
     ports:
       - 9000:9000
+    depends_on:
+      - mariadb
     volumes:
-      - wordpress_data:/var/www/html
-    networks:
-      - mynetwork
-networks:
-  mynetwork:
-
-volumes:
-  mariadb_data:
-  wordpress_data: 
+      - wordpress:/usr/share/nginx/html
