@@ -1,12 +1,4 @@
 #!/bin/bash
-##################################################
-DOMAIN_NAME=localhost    #eelmoham.42.fr        #
-## MYSQL SETUP                                  #
-MYSQL_ROOT_PASSWORD=Mehdi@zero                  #
-MYSQL_USER=eelmoham                             #
-MYSQL_PASSWORD=Mehdi@zero                       #
-DB_NAME=myDb                                    #
-#################################################
 
 sed -i 's/bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
@@ -17,5 +9,4 @@ mysql -e "GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%'" # Grant privileges
 mysql -e "FLUSH PRIVILEGES"
 mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'"# Change root password
 mysql -e "FLUSH PRIVILEGES"
-
 kill `cat /var/run/mysqld/mysqld.pid` # Stop mysql

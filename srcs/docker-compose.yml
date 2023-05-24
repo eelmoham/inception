@@ -15,6 +15,7 @@ volumes:
       device: /Users/eelmoham/data/wordpress
 services:
   mariadb:
+    container_name: mariadb
     build:
       context: ./requirements/MariaDB
       dockerfile: Dockerfile
@@ -27,6 +28,7 @@ services:
     env_file:
       - .env
   nginx:
+    container_name: nginx
     build:
       context: ./requirements/NGINX
       dockerfile: Dockerfile
@@ -40,8 +42,8 @@ services:
       - my-network
     env_file:
       - .env
-
   wordpress:
+    container_name: wordpress
     build:
       context: ./requirements/WordPress
       dockerfile: Dockerfile
