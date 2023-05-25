@@ -8,6 +8,6 @@ RUN chmod +x ./script.sh
 
 EXPOSE 9000
 
-RUN sh script.sh
+ENTRYPOINT [ "./script.sh" ]
 
 CMD ["php-fpm7.3", "-F"]
