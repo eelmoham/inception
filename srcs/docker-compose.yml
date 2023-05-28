@@ -6,13 +6,13 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: $HOME/data/mariadb
+      device: /home/eelmoham/data/mariadb
   wordpress:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: $HOME/data/wordpress
+      device: /home/eelmoham/data/wordpress
 services:
   mariadb:
     container_name: mariadb
