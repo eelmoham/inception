@@ -16,6 +16,7 @@ purge:
 	docker volume prune -f
 	docker network prune -f
 	docker system prune -f
+
 rm_data:
 	rm -rf ~/data/mariadb/*
 	rm -rf ~/data/wordpress/*

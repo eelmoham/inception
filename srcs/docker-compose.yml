@@ -13,6 +13,7 @@ volumes:
       type: none
       o: bind
       device: /home/eelmoham/data/wordpress
+
 services:
   mariadb:
     container_name: mariadb
@@ -57,6 +58,7 @@ services:
       - my-network
     env_file:
       - .env
+
 networks:
   my-network:
     driver: bridge
