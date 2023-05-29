@@ -11,10 +11,10 @@ down:
 restart: down up
 
 purge:
-	docker rm $(docker ps -aq) -f
-	docker rmi $(docker images -aq) -f
+	docker rm nginx mariadb wordpress -f
+	docker rmi srcs-nginx srcs-mariadb srcs-wordpress -f
 	docker volume prune -f
 	docker network prune -f
 	docker system prune -f
 
-.PHONY: up down restart help
+.PHONY: up down restart
