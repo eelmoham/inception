@@ -1,5 +1,3 @@
-.DEFAULT_GOAL := help
-
 COMPOSE_FILE := ./srcs/docker-compose.yml
 
 up:
